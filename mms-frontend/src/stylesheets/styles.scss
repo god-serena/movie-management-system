@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@700;900&display=swap');
+
+$netflix-sans: 'Netflix Sans';
+
+html, body {
+    font-family:  $netflix-sans;
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+input {
+    color: white !important;
+    width: 400px !important;
+    height: 56px !important;
+
+    &:focus {
+        border-color: white !important;
+        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25) !important;
+    }
+    &::placeholder {
+        color: white !important;
+    }
+}
