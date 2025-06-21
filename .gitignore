@@ -1,0 +1,90 @@
+# Python
+.python-version
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pyenv
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+static/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Frontend
+mms-Frontend/node_modules/
+mms-Frontend/dist/
+mms-Frontend/.env
+mms-Frontend/.env.local
+mms-Frontend/.env.*.local
+
+# Webmart API
+mms-backend/.env
+mms-backend/.env.local
+mms-backend/.env.*.local
+mms-backend/.pyenv
+mms-backend/__pycache__/
+mms-backend/*.py[cod]
+mms-backend/$py.class
+mms-backend/*.so
+mms-backend/.Python
+mms-backend/build/
+mms-backend/develop-eggs/
+mms-backend/dist/
+mms-backend/downloads/
+mms-backend/eggs/
+mms-backend/.eggs/
+mms-backend/lib/
+mms-backend/lib64/
+mms-backend/parts/
+mms-backend/sdist/
+mms-backend/var/
+mms-backend/wheels/
+mms-backend/*.egg-info/
+mms-backend/.installed.cfg
+mms-backend/*.egg
+mms-backend/venv/
+mms-backend/env/
+mms-backend/ENV/
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
