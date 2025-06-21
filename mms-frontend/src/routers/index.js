@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import External from './external';
+import external from './external';
+import internal from './internal'
 
 export default createRouter({
     routes: [
-        ...External,
+        ...external,
+        ...internal
     ],
     history: createWebHistory() 
 })
