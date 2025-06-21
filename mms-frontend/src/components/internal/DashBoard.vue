@@ -12,12 +12,8 @@
 
     function showHideModal(e) {
         if (e?.new_upload) hasNewUpload.value = !hasNewUpload.value;
+        if (e.movieToEdit) movieToEdit.value = e.movieToEdit
         showUploadModal.value = !showUploadModal.value
-    }
-
-    function openUploadModal(e) {
-        movieToEdit.value = e.movieToEdit
-        showUploadModal.value = true
     }
 
     async function signOut() {
@@ -52,12 +48,12 @@
         </div>
         <MoviesList
             :has-new-upload="hasNewUpload"
-            @open-upload-modal="openUploadModal"
+            @open-upload-modal="showHideModal"
         />
         <UploadModal
             v-if="showUploadModal"
             :movie-to-edit="movieToEdit"
-            @close="showHideModal"
+            @close="movieToEdit=null;showHideModal($event)"
         />
         <div
             class="upload-bttn fixed-bottom d-flex justify-content-end"

@@ -63,7 +63,7 @@
             <p class="display-5 mb-3">
                 Collections
             </p>
-            <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-2 g-4">
+            <div class="row row-cols-lg-6 row-cols-md-6 row-cols-sm-3 g-4">
                 <template v-if="isFetching">
                     <div
                         v-for="i in 6"

@@ -78,7 +78,10 @@
                     type="password"
                     placeholder="Password"
                 >
-                <p class="form-text text-danger">
+                <p
+                    v-if="hasError"
+                    class="form-text text-danger"
+                >
                     <i class="bi bi-x-circle" />
                     Something went wrong. Please try again.
                 </p>

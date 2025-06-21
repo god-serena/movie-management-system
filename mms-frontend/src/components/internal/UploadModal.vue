@@ -36,7 +36,7 @@
             movie[key] = filesObj[0]
             movie[key].url = URL.createObjectURL(movie[key])
 
-            if (key === 'video_file') videoPlayer.value.load()
+            if (key === 'video_file' && videoPlayer.value) videoPlayer.value.load()
         }
     }
     
@@ -56,7 +56,7 @@
             })
             payload['id'] = props.movieToEdit?.id
         } else {
-            payload = props.movie
+            payload = movie
         }
 
         try {
