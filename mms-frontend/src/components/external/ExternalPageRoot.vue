@@ -2,15 +2,15 @@
 </script>
 
 <template>
-  <div class="container-fluid p-0 vh-100 position-relative">
-    <div class="bg position-absolute w-100 h-100"></div>
-    <div class="container-fluid position-relative w-100 h-100">
-        <router-view></router-view>
+    <div class="container-fluid p-0 vh-100 position-relative">
+        <div class="bg position-absolute w-100 h-100" />
+        <div class="container-fluid position-relative w-100 h-100">
+            <router-view />
+        </div>
     </div>
-  </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
   .bg {
     background-image: url('assets/home_page_bg.jpg');
     filter: brightness(0.3);

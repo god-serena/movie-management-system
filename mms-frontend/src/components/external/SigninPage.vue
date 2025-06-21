@@ -1,37 +1,49 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { useStore } from 'vuex'
+    import { ref, watch } from 'vue'
+    import { useStore } from 'vuex'
+    import { useRouter } from 'vue-router'
 
-const store = useStore()
+    const router = useRouter()
+    const store = useStore()
 
-let email = ref('')
-let password = ref('')
-let isSubmitting = ref(false)
-let hasError = ref(false)
+    let email = ref('')
+    let password = ref('')
+    let isSubmitting = ref(false)
+    let hasError = ref(false)
 
-async function onSubmit() {
-    try { 
-        isSubmitting.value = true
-        console.log(isSubmitting.value)
-        await store.dispatch('authStore/signInUser', {
-            email,
-            password
-        })
-    } catch {
-        hasError.value = true
-    } finally {
-        isSubmitting.value = false
+    watch([email, password], () => hasError.value = false)
+
+    async function onSubmit() {
+        hasError.value = false;
+        try { 
+            isSubmitting.value = true
+            await store.dispatch('authStore/signInUser', {
+                email: email.value,
+                password: password.value
+            })
+            router.replace({
+                name: 'dashboard'
+            })
+        } catch (e) {
+            console.log(e)
+            hasError.value = true
+        } finally {
+            isSubmitting.value = false
+        }
     }
-}
-
 </script>
 
 <template>
     <div class="container-fluid d-flex align-items-center position-relative w-100 h-100 p-0">
-        <div class="sign-in-form container d-flex flex-column align-items-center border
-        bg-dark bg-opacity-75 w-auto gap-5">
+        <div
+            class="sign-in-form container d-flex flex-column align-items-center border border-0
+        bg-dark bg-opacity-75 w-auto gap-5"
+        >
             <router-link to="/">
-                <img src="assets/logo.png" alt="">
+                <img
+                    src="assets/logo.png"
+                    alt=""
+                >
             </router-link>
             <form 
                 class="d-flex flex-column gap-2 h-100"
@@ -45,15 +57,22 @@ async function onSubmit() {
                     placeholder="Email address"
                 >
                 <input
-                    v-mode="password"
+                    v-model="password"
                     required
                     class="form-control bg-transparent"
                     type="password"
                     placeholder="Password"
                 >
-                <button class="btn mt-5 btn-danger">
+                <p
+                    v-if="hasError"
+                    class="m-0 form-text text-danger"
+                >
+                    <i class="bi bi-x-circle" />
+                    Wrong credentials.
+                </p>
+                <button class="btn mt-4 btn-danger">
                     <p
-                        v-if="isSubmitting"
+                        v-if="!isSubmitting"
                         class="m-0"
                     >
                         Sign In
@@ -61,15 +80,15 @@ async function onSubmit() {
                     <div
                         v-else
                         class="spinner-border text-light" 
-                        role="status">
-                    </div>
+                        role="status"
+                    />
                 </button>
             </form>
         </div>
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
     .sign-in-form {
         padding: 40px;
 
