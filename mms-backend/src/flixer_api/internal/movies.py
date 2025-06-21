@@ -50,10 +50,10 @@ def upload_movie(
     video_file: UploadedFile = File(...),
     thumbnail: UploadedFile = File(...),
 ):
+    user = request.user
     with transaction.atomic():
-        if Movie.objects.filter(title=title).exists():
+        if Movie.objects.filter(title=title, uploader=user).exists():
             raise HttpError(409, "Movie already exists")
-        user = request.user
         Movie.objects.create(
             uploader=user,
             title=title,
