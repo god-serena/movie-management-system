@@ -1,9 +1,7 @@
-const BASE_URL = 'http://localhost:8000/flixerAPI/';
+const BASE_URL = 'http://localhost:8000/flixer-api/'
 
-export function WebMartApi(endpoint, method = 'GET', data) {
-  const headers = {
-    'Content-Type': 'application/json',
-  };
+export function FlexirApi(endpoint, method = 'GET', data) {
+  const headers = {}
   const access_token = localStorage.getItem("access_token")
 
   if (access_token) {
@@ -14,26 +12,31 @@ export function WebMartApi(endpoint, method = 'GET', data) {
     method,
     headers,
   };
-    //if (data) {
-    //  const formData = new URLSearchParams();
-    //  for (const key in data) {
-    //    if (typeof data[key] === 'object') {
-    //      for (const nestedKey in data[key]) {
-    //        formData.append(`${key}.${nestedKey}`, data[key][nestedKey]);
-    //      }
-    //    } else {
-    //      formData.append(key, data[key]);
-    //    }
-    //}
+  
+  if (method === 'PUT' && data instanceof FormData) {
+     endpoint += data?.get("id") ? `/${data?.get("id")}` : ''
+  } else {
+    endpoint += data?.['id'] ? `/${data.id}` : ''
   }
 
-  return new Promise((resolve, reject) => {
-    fetch(`${BASE_URL}${endpoint}`, config)
-      .then((response) => {
-        if (response.ok) return response.json();
-        throw new Error(response)
-      })
-      .then((data) => resolve(data))
-      .catch((error) =>reject(error))
-  });
+ if (['PUT', 'POST'].includes(method)) {
+    if (data instanceof FormData) {
+      config['body'] = data;
+    } else {
+      headers['Content-Type'] = 'application/json';
+      config['body'] = JSON.stringify(data);
+    }
+  }
+
+  return fetch(`${BASE_URL}${endpoint}`, config)
+      .then(async (response) => {
+          const data = await response.json();
+          if (response.ok) {
+            return data;
+          } else {
+            const error = new Error(response.statusText);
+            error.status = response.status;
+            throw error;
+          }
+      });
 }
