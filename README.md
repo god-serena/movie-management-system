@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ```
 Run migrations
 ```
-python manage.py mnigrate
+python manage.py migrate
 ```
 Run server
 ```
