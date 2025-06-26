@@ -26,7 +26,7 @@ cd mms-backend
 ```
 Create a virtual environment
 ```
-python -m venv .venv
+python -m venv venv
 ```
 Activate virtual environment
 ```
